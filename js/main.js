@@ -1,14 +1,25 @@
-import flags from './model/flags.js';
+import flags from "./model/flags.js";
 
-const conteudo = document.querySelector('main');
+const main = document.querySelector("main");
+
+function criarCard(flag) {
+  const div = document.createElement("div");
+  div.className = "flag col-2 my-2 text-center";
+
+  const img = document.createElement("img");
+  img.src = flag.image;
+  img.alt = flag.name;
+
+  const p = document.createElement("p");
+  p.textContent = flag.name;
+
+  div.appendChild(img);
+  div.appendChild(p);
+
+  return div;
+}
 
 flags.forEach(flag => {
-  const card = `
-  <div class="flag col-2 my-2 text-center">
-  <img src="${flag.image}" alt="${flag.name}">
-  <p>${flag.name}</p>
-  </div>`;
-
-conteudo.insertAdjacentHTML("beforeend", card);
-})
-
+  const card = criarCard(flag);
+  main.appendChild(card);
+});
